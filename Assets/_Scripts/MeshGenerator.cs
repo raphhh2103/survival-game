@@ -54,8 +54,8 @@ public class MeshData
     public void AddTriangle(int a, int b, int c)
     {
         triangles[triangleIndex] = a;
-        triangles[triangleIndex + 1] = a;
-        triangles[triangleIndex + 2] = a;
+        triangles[triangleIndex + 1] = b;
+        triangles[triangleIndex + 2] = b;
         triangleIndex += 3;
     }
     public Mesh CreateMesh()
