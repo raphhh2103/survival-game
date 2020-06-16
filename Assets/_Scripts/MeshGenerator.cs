@@ -19,7 +19,7 @@ public static class MeshGenerator
             for (int x = 0; x < width; x++)
             {
                 meshData.vertices[vertexIndex] = new Vector3(topLeftX + x, heightMap[x, y], topLeftZ - y);
-                meshData.uvs[vertexIndex] = new Vector2(x / (float)width, (float)height);
+                meshData.uvs[vertexIndex] = new Vector2(x / (float)width,y/ (float)height);
 
                 if (x < width - 1 && y < height - 1)
                 {

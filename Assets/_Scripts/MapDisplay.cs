@@ -23,5 +23,6 @@ public class MapDisplay : MonoBehaviour
        
         meshFilter.sharedMesh = meshdata.CreateMesh();
         meshRenderer.sharedMaterial.mainTexture = texture;
+        
     }
 }
