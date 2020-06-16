@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+
 [CustomEditor(typeof(WorldGenerator))]
 public class WorldGeneratorEditor : Editor
 {
@@ -14,13 +15,13 @@ public class WorldGeneratorEditor : Editor
         {
             if (mapGen.autoUpdate)
             {
-                mapGen.GenerateMap();
+                mapGen.GenerateMapData();
             }
         }
 
         if (GUILayout.Button("generate"))
         {
-            mapGen.GenerateMap();
+            mapGen.GenerateMapData();
         }
 
     }
