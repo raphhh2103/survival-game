@@ -15,7 +15,7 @@ public class WorldGeneratorEditor : Editor
         {
             if (mapGen.autoUpdate)
             {
-                //mapGen.GenerateMapData();
+                //mapGen.GenerateMapData(new Vector2(mapGen.gameObject.GetComponent<EndlessTerrain>().viewer.position.x, mapGen.gameObject.GetComponent<EndlessTerrain>().viewer.position.z));
             }
         }
 

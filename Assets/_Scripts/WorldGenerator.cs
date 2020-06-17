@@ -127,9 +127,6 @@ public class WorldGenerator : MonoBehaviour
                 }
             }
         }
-
-
-
         //display.DrawNoiseMap(noiseMap);
         return new MapData(noiseMap, colouMap);
     }
@@ -137,7 +134,6 @@ public class WorldGenerator : MonoBehaviour
 
     private void OnValidate()
     {
-
         if (lacunarity < 1)
         {
             lacunarity = 1;
@@ -146,7 +142,6 @@ public class WorldGenerator : MonoBehaviour
         {
             octaves = 0;
         }
-
     }
     struct MapThreadInfo<T>
     {
