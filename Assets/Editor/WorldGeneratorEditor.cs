@@ -15,13 +15,13 @@ public class WorldGeneratorEditor : Editor
         {
             if (mapGen.autoUpdate)
             {
-                mapGen.GenerateMapData();
+                //mapGen.GenerateMapData();
             }
         }
 
         if (GUILayout.Button("generate"))
         {
-            mapGen.GenerateMapData();
+            //mapGen.GenerateMapData();
         }
 
     }
