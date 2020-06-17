@@ -6,6 +6,7 @@ public class EndlessTerrain : MonoBehaviour
 {
     public const float maxViewDst = 500;
     public Transform viewer;
+    public Material mapMaterial;
 
 
     public static Vector2 viewerPosition;
@@ -57,7 +58,7 @@ public class EndlessTerrain : MonoBehaviour
                 }
                 else
                 {
-                    terrainChunkDictionnary.Add(viewedChunckCoord, new TerrainChunk(viewedChunckCoord,chunkSize,transform));
+                    terrainChunkDictionnary.Add(viewedChunckCoord, new TerrainChunk(viewedChunckCoord,chunkSize,transform,mapMaterial));
                 }
             }
         }
@@ -73,7 +74,7 @@ public class EndlessTerrain : MonoBehaviour
         MeshRenderer meshRenderer;
         MeshFilter meshFilter;
 
-        public TerrainChunk(Vector2 coord, int size,Transform parent)
+        public TerrainChunk(Vector2 coord, int size,Transform parent,Material material)
         {
             position = coord * size;
             bounds = new Bounds(position, Vector2.one * size);
@@ -81,9 +82,9 @@ public class EndlessTerrain : MonoBehaviour
             meshObject = new GameObject("Terrain Chunk");
             meshRenderer = meshObject.AddComponent<MeshRenderer>();
             meshFilter = meshObject.AddComponent<MeshFilter>();
-            meshObject = GameObject.CreatePrimitive(PrimitiveType.Plane);
+            meshRenderer.material = material;
+            //meshObject = GameObject.CreatePrimitive(PrimitiveType.Plane);
             meshObject.transform.position = positionV3;
-            meshObject.transform.localScale = Vector3.one * size / 10f;
             meshObject.transform.parent = parent;
             SetVisible(false);
 
@@ -91,12 +92,12 @@ public class EndlessTerrain : MonoBehaviour
         }
         void OnMapDataReceived(MapData mapData)
         {
-            Debug.Log("yolooo");
+            worldGenerator.RequestMeshData(mapData, OnMeshDataReveived);
         }
 
         void OnMeshDataReveived(MeshData meshData)
         {
-            //
+            meshFilter.mesh = meshData.CreateMesh();
         }
 
         public void UpdateTerrainChunk()
