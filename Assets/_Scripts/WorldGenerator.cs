@@ -45,6 +45,7 @@ public class WorldGenerator : MonoBehaviour
         }
         else if (drawMode == DrawMode.Mesh)
         {
+            //Debug.Log(mapData.heightMap);
             display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMuliplier, meshHeightCurve, editorPreviewLOD), TextureGenerator.TextureFromColourMap(mapData.colourMap, mapChunkSize, mapChunkSize));
         }
     }
@@ -67,7 +68,6 @@ public class WorldGenerator : MonoBehaviour
         }
     }
 
-
     public void RequestMeshData(MapData mapData,int lod, Action<MeshData> callback)
     {
         ThreadStart threadStart = delegate
@@ -77,7 +77,6 @@ public class WorldGenerator : MonoBehaviour
 
         new Thread(threadStart).Start();
     }
-
 
     void MeshDataThread(MapData mapData,int lod, Action<MeshData> callback)
     {
@@ -110,7 +109,6 @@ public class WorldGenerator : MonoBehaviour
     public MapData GenerateMapData(Vector2 center)
     {
         float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, center +offset);
-
         Color[] colouMap = new Color[mapChunkSize * mapChunkSize];
         for (int y = 0; y < mapChunkSize; y++)
         {
@@ -130,7 +128,6 @@ public class WorldGenerator : MonoBehaviour
         //display.DrawNoiseMap(noiseMap);
         return new MapData(noiseMap, colouMap);
     }
-
 
     private void OnValidate()
     {
@@ -160,14 +157,12 @@ public struct TerrainType
     public string name;
     public float height;
     public Color colour;
-
 }
 
 public struct MapData
 {
     public readonly float[,] heightMap;
     public readonly Color[] colourMap;
-
 
     public MapData(float[,]heightMap, Color[] colourMap)
     {
